@@ -1,0 +1,50 @@
+.header {
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.4);
+    margin-bottom: 20px;
+    &__logo {
+        width: 2.5rem; 
+        object-fit: cover;
+        border-radius: 50%;
+    }
+    &__title {
+        padding-left: 0.5rem; 
+        font-weight: bold;
+        font-size: 1.25rem;
+    }
+}  
+  .headerContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+.logoBox {
+    display: flex;
+    align-items: center;
+    color: #f5f5f5;
+    &__link {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.navMenu {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .navLink {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: 0.3s, color 0.3s;
+  }
+  
+  .navLink:hover {
+    background: #555;
+    color: #fff;
+  }

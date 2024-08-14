@@ -1,0 +1,141 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #f3f4f6; // text-neutral-100
+    padding: 20px;
+  }
+  
+  .content {
+    display: flex;
+    flex-direction: column;
+    max-width: 1120px;
+    padding: 20px;
+    width: 100%;
+  
+    @media (min-width: 768px) {
+      flex-direction: row;
+    }
+  }
+  
+  .teamInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(139, 0, 0, 0.8)); // from-black/60 to-red-800/80
+    height: 500px;
+  
+    @media (min-width: 768px) {
+      width: 33.333%;
+    }
+  }
+  
+  .logo {
+    padding: 12px;
+  }
+  
+  .teamName {
+    font-size: 1.5rem; // text-2xl
+  }
+  
+  .teamDetails {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .rank {
+    width: 33.333%;
+    text-align: center;
+    font-size: 1.5rem; // text-2xl
+  }
+  
+  .group {
+    width: 33.333%;
+    text-align: center;
+  }
+  
+  .formContainer {
+    width: 33.333%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .formLabel {
+    text-align: center;
+  }
+  
+  .form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .formItem {
+    opacity: 0.8;
+    width: 12px; // w-3
+    height: 12px; // h-3
+    margin: 4px; // m-1
+    border-radius: 50%; // rounded-full
+  }
+  
+  .win {
+    background-color: #10b981; // bg-green-500
+  }
+  
+  .draw {
+    background-color: #6b7280; // bg-gray-500
+  }
+  
+  .loss {
+    background-color: #ef4444; // bg-red-500
+  }
+  
+  .stats {
+    width: 100%;
+    padding: 8px; // p-2
+    margin-top: 40px; // mt-10
+  }
+  
+  .statsHeader,
+  .statsData {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.25rem; // text-xl
+  }
+  
+  .statsHeaderItem,
+  .statsDataItem {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .fixtures {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  
+    @media (min-width: 768px) {
+      width: 66.667%;
+    }
+  }
+  
+  .infoUnavailable {
+    display: flex;
+    max-width: 1120px;
+    padding: 20px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    color: #f3f4f6; // text-neutral-100
+  }
+  

@@ -1,0 +1,154 @@
+// Match.module.scss
+
+.matchContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 2.5rem 0; // py-10
+    color: #f8f9fa; // text-neutral-100
+}
+
+.logoSection {
+    display: flex;
+    width: 100%;
+    max-width: 90rem; // max-w-7xl
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px; // perspective
+    padding-bottom: 2.5rem; // pb-10
+    @media (min-width: 768px) {
+        padding-bottom: 5rem; // md:pb-20
+    }
+}
+
+.logoLeft, .logoRight {
+    width: 33.3333%;
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); // logo-shadow
+
+    &.logoLeft {
+        animation: logo-pop-left 1s ease-in-out;
+    }
+
+    &.logoRight {
+        animation: logo-pop-right 1s ease-in-out;
+    }
+}
+
+.matchDetails {
+    width: 33.3333%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 14rem; // h-56
+
+    .date {
+        height: 20%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.875rem; // text-sm
+        text-align: center;
+
+        @media (min-width: 768px) {
+            font-size: 1.25rem; // md:text-xl
+        }
+    }
+
+    .score {
+        height: 60%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.25rem; // text-2xl
+
+        @media (min-width: 768px) {
+            font-size: 3rem; // md:text-5xl
+        }
+
+        .homeScore, .awayScore {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+
+            .penalty, .extratime {
+                font-size: 0.875rem; // text-sm
+            }
+        }
+
+        .scoreSeparator {
+            font-size: 1.25rem; // text-2xl
+            text-align: center;
+        }
+    }
+
+    .matchInfo {
+        height: 20%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.infoSection {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 1.25rem 0; // py-5
+    @media (min-width: 768px) {
+        padding: 2.5rem 0; // md:p-10
+    }
+    background: linear-gradient(to bottom, rgba(183, 28, 28, 0.6), rgba(183, 28, 28, 0.1)); // bg-gradient-to-b from-red-800/60 to-red-800/10
+
+    .leagueInfo {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0.5rem 0; // py-2
+    }
+
+    .teamNames {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+        .teamHome, .teamAway {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            justify-content: center;
+            align-items: center;
+            padding: 0.25rem; // p-1
+
+            .teamName {
+                font-size: 1.25rem; // text-xl
+                text-align: center;
+
+                @media (min-width: 768px) {
+                    font-size: 1.5rem; // md:text-2xl
+                }
+            }
+        }
+    }
+}
+
+@keyframes logo-pop-left {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes logo-pop-right {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
