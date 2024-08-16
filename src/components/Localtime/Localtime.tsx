@@ -25,7 +25,7 @@ export default function LocalTime({
         const fixtureTime = fixture.fixture.date;
         const formatted = formatToLocalTime(fixtureTime);
         setFormattedTime(formatted);
-    }, []);
+    }, [fixture.fixture.date]);
 
     return (
         <div className={styles.localTime}>{formattedTime}</div>

@@ -1,141 +1,94 @@
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: #f3f4f6; // text-neutral-100
-    padding: 20px;
+.content {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  @media (min-width: 768px) {
+    flex-direction: row;
   }
-  
-  .content {
-    display: flex;
-    flex-direction: column;
-    max-width: 1120px;
-    padding: 20px;
-    width: 100%;
-  
-    @media (min-width: 768px) {
-      flex-direction: row;
-    }
-  }
-  
-  .teamInfo {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(139, 0, 0, 0.8)); // from-black/60 to-red-800/80
-    height: 500px;
-  
-    @media (min-width: 768px) {
-      width: 33.333%;
-    }
-  }
-  
+}
+
+.teamInfo {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 33.3333%; 
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(185, 28, 28, 0.8));
+  height: 500px;
+
   .logo {
-    padding: 12px;
+    padding: 0.75rem;
   }
-  
+
   .teamName {
-    font-size: 1.5rem; // text-2xl
+    font-size: 1.5rem;
   }
-  
-  .teamDetails {
+
+  .details {
     display: flex;
-    justify-content: center;
-    align-items: center;
     width: 100%;
-  }
-  
-  .rank {
-    width: 33.333%;
-    text-align: center;
-    font-size: 1.5rem; // text-2xl
-  }
-  
-  .group {
-    width: 33.333%;
-    text-align: center;
-  }
-  
-  .formContainer {
-    width: 33.333%;
-    display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
-  
-  .formLabel {
-    text-align: center;
-  }
-  
-  .form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .formItem {
-    opacity: 0.8;
-    width: 12px; // w-3
-    height: 12px; // h-3
-    margin: 4px; // m-1
-    border-radius: 50%; // rounded-full
-  }
-  
-  .win {
-    background-color: #10b981; // bg-green-500
-  }
-  
-  .draw {
-    background-color: #6b7280; // bg-gray-500
-  }
-  
-  .loss {
-    background-color: #ef4444; // bg-red-500
-  }
-  
-  .stats {
-    width: 100%;
-    padding: 8px; // p-2
-    margin-top: 40px; // mt-10
-  }
-  
-  .statsHeader,
-  .statsData {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.25rem; // text-xl
-  }
-  
-  .statsHeaderItem,
-  .statsDataItem {
-    width: 100%;
-    text-align: center;
-  }
-  
-  .fixtures {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-  
-    @media (min-width: 768px) {
-      width: 66.667%;
+
+    .stat {
+      width: 33.3333%; /* w-1/3 */
+      text-align: center;
+    }
+
+    .form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .formItem {
+        opacity: 0.8;
+        width: 0.75rem; /* w-3 */
+        height: 0.75rem; /* h-3 */
+        margin: 0.25rem; /* m-1 */
+        border-radius: 50%; /* rounded-full */
+        background-color: #999; /* default color */
+        &.win { background-color: #28a745; } /* bg-green-500 */
+        &.draw { background-color: #6c757d; } /* bg-gray-500 */
+        &.lose { background-color: #dc3545; } /* bg-red-500 */
+      }
     }
   }
-  
-  .infoUnavailable {
+
+  .statsTable {
     display: flex;
-    max-width: 1120px;
-    padding: 20px;
+    flex-direction: column;
     width: 100%;
-    justify-content: center;
-    align-items: center;
-    color: #f3f4f6; // text-neutral-100
+    padding: 0.5rem; /* p-2 */
+    margin-top: 2.5rem; /* mt-10 */
+
+    .header, .row {
+      display: flex;
+      width: 100%;
+      justify-content: space-around;
+      align-items: center;
+      font-size: 1.25rem; /* text-xl */
+    }
+
+    .header {
+      font-weight: bold;
+    }
+
+    .row {
+      .cell {
+        width: 12.5%; /* w-full/8 */
+        text-align: center;
+      }
+    }
   }
-  
+}
+
+.fixtures {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}

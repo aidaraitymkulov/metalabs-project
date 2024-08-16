@@ -19,7 +19,7 @@ export default async function Match({
     if (!fixtureByFixtureId) {
         return (
             <div className={styles.matchContainer}>
-                <div className="flex max-w-7xl p-5 w-full md:flex-row justify-center items-center text-neutral-100">
+                <div>
                     No Fixture Info Available
                 </div>
             </div>
@@ -27,7 +27,7 @@ export default async function Match({
     }
 
     return (
-        <div className={styles.matchContainer}>
+        <div className="container">
             <div className={styles.logoSection}>
                 <div className={styles.logoLeft}>
                     <Link href={`../team/${fixtureByFixtureId.teams.home.id}`}>

@@ -1,8 +1,9 @@
-import Fixtures from "@/src/components/Fixtures/Fixtures"
-import getFixturesByTeamId from "@/src/util/getFixturesByTeamId"
-import getTeamInfoByTeamId from "@/src/util/getTeamInfoByTeamId"
-import { Fixture, Team } from "@/types"
-import Image from "next/image"
+import Fixtures from "@/src/components/Fixtures";
+import getFixturesByTeamId from "@/src/util/getFixturesByTeamId";
+import getTeamInfoByTeamId from "@/src/util/getTeamInfoByTeamId";
+import type { Fixture, Team } from "@/types";
+import Image from "next/image";
+import styles from './Team.module.scss';
 
 type PageProps = {
     params: {
@@ -19,73 +20,68 @@ export default async function Team({
 
     if (!teamInfo) {
         return (
-            <div className="flex w-full justify-center items-center py-5">
-                <div className="flex max-w-7xl p-5 w-full md:flex-row justify-center items-center text-neutral-100">
+            <div className={styles.container}>
+                <div className={`${styles.content} text-neutral-100`}>
                     Team Info Not Available
                 </div>
             </div>
-        )
+        );
     }
 
     return (
-        <div className="flex justify-center items-center text-neutral-100 py-5">
-            <div className="flex flex-col max-w-7xl p-5 w-full md:flex-row">
-                <div className="flex flex-col md:w-1/3 justify-center items-center
-                bg-gradient-to-r from-black/60 to-red-800/80 h-[500px]">
+        <div className='container'>
+            <div className={styles.content}>
+                <div className={styles.teamInfo}>
                     <Image
                         src={teamInfo.team.logo}
                         alt="TeamLogo"
                         width={150}
                         height={150}
-                        className="p-3"
+                        className={styles.logo}
                     />
-                    <div className="text-2xl">{teamInfo.team.name}</div>
-                    <div className="flex justify-center items-center w-full">
-                        <div className="w-1/3 text-center text-2xl">#{teamInfo.rank}</div>
-                        <div className="w-1/3 text-center">{teamInfo.group}</div>
-                        <div className="w-1/3 flex flex-col justify-center items-center">
-                            <div className="text-center">Form</div>
-                            <div className="flex justify-center items-center">
-                                {
-                                    teamInfo.form?.split('').map((char, i) => (
-                                        <div
-                                            key={char + i}
-                                            className={`opacity-80 w-3 h-3 m-1 rounded-full
-                                            ${char === 'L' ? 'bg-red-500' : char === 'D' ?
-                                                    'bg-gray-500' : 'bg-green-500'}`}
-                                        />
-                                    ))
-                                }
+                    <div className={styles.teamName}>{teamInfo.team.name}</div>
+                    <div className={styles.details}>
+                        <div className={styles.stat}>{`#${teamInfo.rank}`}</div>
+                        <div className={styles.stat}>{teamInfo.group}</div>
+                        <div className={styles.stat}>
+                            <div>Form</div>
+                            <div className={styles.form}>
+                                {teamInfo.form?.split('').map((char, i) => (
+                                    <div
+                                        key={char + i}
+                                        className={`${styles.formItem} ${char === 'L' ? styles.lose : char === 'D' ? styles.draw : styles.win}`}
+                                    />
+                                ))}
                             </div>
                         </div>
                     </div>
-                    <div className="flex flex-col w-full p-2 mt-10">
-                        <div className="flex w-full justify-center items-center text-xl">
-                            <div className="w-full text-center font-bold">P</div>
-                            <div className="w-full text-center">M</div>
-                            <div className="w-full text-center">W</div>
-                            <div className="w-full text-center">D</div>
-                            <div className="w-full text-center">L</div>
-                            <div className="w-full text-center">GF</div>
-                            <div className="w-full text-center">GA</div>
-                            <div className="w-full text-center">GD</div>
+                    <div className={styles.statsTable}>
+                        <div className={styles.header}>
+                            <div className="cell">P</div>
+                            <div className="cell">M</div>
+                            <div className="cell">W</div>
+                            <div className="cell">D</div>
+                            <div className="cell">L</div>
+                            <div className="cell">GF</div>
+                            <div className="cell">GA</div>
+                            <div className="cell">GD</div>
                         </div>
-                        <div className="flex w-full justify-center items-center text-xl">
-                            <div className="w-full text-center font-bold">{teamInfo.points}</div>
-                            <div className="w-full text-center">{teamInfo.all.played}</div>
-                            <div className="w-full text-center">{teamInfo.all.win}</div>
-                            <div className="w-full text-center">{teamInfo.all.draw}</div>
-                            <div className="w-full text-center">{teamInfo.all.lose}</div>
-                            <div className="w-full text-center">{teamInfo.all.goals.for}</div>
-                            <div className="w-full text-center">{teamInfo.all.goals.against}</div>
-                            <div className="w-full text-center">{teamInfo.goalsDiff}</div>
+                        <div className={styles.row}>
+                            <div className="cell">{teamInfo.points}</div>
+                            <div className="cell">{teamInfo.all.played}</div>
+                            <div className="cell">{teamInfo.all.win}</div>
+                            <div className="cell">{teamInfo.all.draw}</div>
+                            <div className="cell">{teamInfo.all.lose}</div>
+                            <div className="cell">{teamInfo.all.goals.for}</div>
+                            <div className="cell">{teamInfo.all.goals.against}</div>
+                            <div className="cell">{teamInfo.goalsDiff}</div>
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-col md:w-2/3 justify-center items-center">
+            </div>
+            <div className={styles.fixtures}>
                     <Fixtures fixturesByTeamId={fixturesByTeamId} teamId={parseInt(params.id)} />
                 </div>
-            </div>
         </div>
-    )
+    );
 }

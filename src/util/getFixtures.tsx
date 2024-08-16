@@ -1,8 +1,8 @@
-import axios from 'axios';
 import { AllFixtures, Fixture } from "@/types";
 import moment from 'moment';
 import { USE_SAMPLE } from "../getSample/useSample";
 import getFixturesSample from "../getSample/getFixturesSample";
+
 
 const API_KEY = process.env.API_KEY as string;
 
@@ -28,35 +28,47 @@ const leagues = [
     { league: 65, name: 'Coupe de la Ligue' },
     { league: 66, name: 'Coupe de France' },
     { league: 526, name: 'Trophee des Champions' },
-];
+]
 
 async function fetchFixturesByLeague(year: number, league: number): Promise<Fixture[]> {
+
     const url = `https://api-football-v1.p.rapidapi.com/v3/fixtures?league=${league}&season=${year}`;
     const options = {
+        method: 'GET',
         headers: {
             'X-RapidAPI-Key': API_KEY,
             'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com'
         },
-    };
+        next: {
+            revalidate: 60 * 60 * 24
+        }
+    }
 
     try {
-        const response = await axios.get(url, options);
-        const fixtures: Fixture[] = response.data.response;
-        return fixtures || [];
+        const response = await fetch(url, options);
+        const data = await response.json();
+        const fixtures: Fixture[] = data.response;
+        if (fixtures === null || fixtures === undefined) {
+            return [];
+        } else {
+            return fixtures;
+        }
+
     } catch (err) {
-        console.error(`Error fetching ${league} fixtures in year ${year}:`, err);
+        console.log(`Error fetching ${league} fixtures in year ${year}: ${err}`);
         return [];
     }
 }
 
 export default async function getFixtures(): Promise<AllFixtures[]> {
+
     if (USE_SAMPLE) {
         return getFixturesSample();
     }
 
     try {
         const currentTime = moment();
-        let year = currentTime.year();
+        const year = currentTime.year();
         const month = currentTime.month();
 
         const allFixturesByLeague: AllFixtures[] = [];
@@ -70,12 +82,12 @@ export default async function getFixtures(): Promise<AllFixtures[]> {
             } else if (month >= 8) {
                 allFixturesByLeague.push({
                     name: league.name,
-                    fixtures: await fetchFixturesByLeague(year , league.league)
+                    fixtures: await fetchFixturesByLeague(year, league.league)
                 });
             } else {
                 allFixturesByLeague.push({
                     name: league.name,
-                    fixtures: await fetchFixturesByLeague(year , league.league)
+                    fixtures: await fetchFixturesByLeague(year - 1, league.league)
                 });
                 const existingData = allFixturesByLeague.find((data) => data.name === league.name);
                 if (existingData) {
@@ -89,9 +101,10 @@ export default async function getFixtures(): Promise<AllFixtures[]> {
             }
         }
 
+
         return allFixturesByLeague;
     } catch (error) {
-        console.error("An error occurred while fetching fixtures:", error);
+        console.error("An error occured while fetching fixtures: ", error);
         throw error;
     }
 }

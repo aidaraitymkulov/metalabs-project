@@ -16,8 +16,6 @@ export default async function Header() {
                         <h1 className={styles.header__title}>FOOTBAZA</h1>
                     </a>
                 </div>
-                <nav className={styles.navMenu}>
-                </nav>
                 <SearchBar teamsData={teamsData} />
             </div>
         </header>
