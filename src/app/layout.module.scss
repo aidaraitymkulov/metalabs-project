@@ -8,9 +8,12 @@
     z-index: -1;
     background-color: black;
     &__image {
+        background-image: url('../../public/background.png.jpg');     
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
         height: 100vh; 
         width: 100%;   
-        object-fit: cover;
         position: fixed;
     }
 }

@@ -15,7 +15,6 @@ export default async function Match({
     params
 }: PageProps) {
     let fixtureByFixtureId: Fixture | null = await getFixtureByFixtureId(parseInt(params.id));
-
     if (!fixtureByFixtureId) {
         return (
             <div className={styles.matchContainer}>
@@ -25,7 +24,8 @@ export default async function Match({
             </div>
         )
     }
-
+    console.log(fixtureByFixtureId.fixture.id)
+    
     return (
         <div className="container">
             <div className={styles.logoSection}>
@@ -89,6 +89,21 @@ export default async function Match({
                     </div>
                 </div>
             </div>
+            {/* <div className={styles.statisticsSection}>
+                <h3>Match Statistics</h3>
+                {matchStatistics.map((stat, index) => (
+                    <div key={index}>
+                        <h4>{stat.team.name}</h4>
+                        <ul>
+                            {stat.statistics.map((statDetail, idx) => (
+                                <li key={idx}>
+                                    {statDetail.type}: {statDetail.value}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ))}
+            </div> */}
         </div>
     )
 }

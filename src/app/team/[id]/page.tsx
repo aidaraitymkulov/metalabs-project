@@ -1,9 +1,11 @@
 import Fixtures from "@/src/components/Fixtures";
 import getFixturesByTeamId from "@/src/util/getFixturesByTeamId";
 import getTeamInfoByTeamId from "@/src/util/getTeamInfoByTeamId";
-import type { Fixture, Team } from "@/types";
+import type { Fixture, Player, Team } from "@/types";
 import Image from "next/image";
 import styles from './Team.module.scss';
+import getPlayersByTeam from "@/src/util/getPlayersByTeamId";
+import { PlayerCard } from "@/src/components/PlayerCard";
 
 type PageProps = {
     params: {
@@ -17,7 +19,9 @@ export default async function Team({
 
     let teamInfo: Team | undefined = await getTeamInfoByTeamId(parseInt(params.id));
     let fixturesByTeamId: Fixture[] = await getFixturesByTeamId(parseInt(params.id));
+    let players: Player[] = await getPlayersByTeam(parseInt(params.id))
 
+    console.log(players.length)
     if (!teamInfo) {
         return (
             <div className={styles.container}>
@@ -81,7 +85,15 @@ export default async function Team({
             </div>
             <div className={styles.fixtures}>
                     <Fixtures fixturesByTeamId={fixturesByTeamId} teamId={parseInt(params.id)} />
+            </div>
+            <div className={styles.palyers}>
+                <h3>Players</h3>
+                <div className={styles.playerCard}>
+                    {players.map((player) => (
+                        <PlayerCard key={player.id} player={player}/>
+                    ))}
                 </div>
+            </div>
         </div>
     );
 }

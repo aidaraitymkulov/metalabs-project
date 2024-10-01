@@ -30,7 +30,7 @@ export default function Leagues({
         <div className='container'>
             <section className={styles.leaguesSection}>
                 <div className={styles.leagueContent}>
-                    <h2>LEAGUES</h2>
+                    <h2 className={styles.title}>LEAGUES</h2>
                     <nav className={styles.menu}>
                         {menuItems.map((item, index) => (
                             <button
@@ -53,7 +53,7 @@ export default function Leagues({
                                     <div className={styles.name}></div>
                                     <div className={styles.stats}>
                                         {['M', 'W', 'D', 'L', 'P', 'GF', 'GA', 'GD'].map(stat => (
-                                            <span key={stat}>{stat}</span>
+                                            <p key={stat}>{stat}</p>
                                         ))}
                                     </div>
                                     <p className={styles.form}>Form</p>
@@ -66,11 +66,11 @@ export default function Leagues({
                                     >
                                         <p className={styles.rank}>{i + 1}</p>
                                         <p className={styles.name}>{team.team.name}</p>
-                                        <p className={styles.stats}>
+                                        <div className={styles.stats}>
                                             {[team.all.played, team.all.win, team.all.draw, team.all.lose, team.points, team.all.goals.for, team.all.goals.against, team.goalsDiff].map((stat, index) => (
-                                                <span key={index}>{stat}</span>
+                                                <div key={index}>{stat}</div>
                                             ))}
-                                        </p>
+                                        </div>
                                         <span className={styles.form}>
                                             {team.form?.split('').map((char, j) => (
                                                 <span key={char + j} className={`${styles.formDot} ${char === 'L' ? styles.lose : char === 'D' ? styles.draw : styles.win}`} />

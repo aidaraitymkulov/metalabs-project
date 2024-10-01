@@ -1,8 +1,5 @@
 import { AllFixtures, Fixture } from "@/types";
 import moment from 'moment';
-import { USE_SAMPLE } from "../getSample/useSample";
-import getFixturesSample from "../getSample/getFixturesSample";
-
 
 const API_KEY = process.env.API_KEY as string;
 
@@ -32,12 +29,12 @@ const leagues = [
 
 async function fetchFixturesByLeague(year: number, league: number): Promise<Fixture[]> {
 
-    const url = `https://api-football-v1.p.rapidapi.com/v3/fixtures?league=${league}&season=${year}`;
+    const url = `https://v3.football.api-sports.io/fixtures?league=${league}&season=2022`;
     const options = {
         method: 'GET',
         headers: {
             'X-RapidAPI-Key': API_KEY,
-            'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com'
+            'X-RapidAPI-Host': 'v3.football.api-sports.io'
         },
         next: {
             revalidate: 60 * 60 * 24
@@ -61,10 +58,6 @@ async function fetchFixturesByLeague(year: number, league: number): Promise<Fixt
 }
 
 export default async function getFixtures(): Promise<AllFixtures[]> {
-
-    if (USE_SAMPLE) {
-        return getFixturesSample();
-    }
 
     try {
         const currentTime = moment();

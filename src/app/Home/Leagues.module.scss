@@ -14,26 +14,30 @@
       color: #fff;
       border-radius: 1.5rem;
     }
+.title {
+  margin-bottom: 20px;
+}
 
 .menu {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-
-    button {
-        flex: 1;
-        padding: 1rem;
-        border-radius: 0.75rem 0.75rem 0 0;
-        font-weight: bold;
-        color: #707070;
-        background-color: rgba(0, 0, 0, 0.7);
-  
-        &.active {
-          color: red;
-          background-color: blue;
-        }
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  button {
+      flex: 1;
+      padding: 1rem;
+      border-radius: 0.75rem 0.75rem 0 0;
+      font-weight: bold;
+      color: #707070;
+      background-color: rgba(0, 0, 0, 0.7);
+      width: 20%; 
+      &.active {
+        color: red;
+        background-color: blue;
       }
-    }
+  }
+}
+
   
 .standingsList {
     width: 100%;
@@ -41,51 +45,49 @@
       overflow-x: hidden;
       scroll-behavior: smooth;
       font-size: 0.75rem;  
-
       .standings {
         flex-shrink: 0;
         width: 100%;
         padding: 0.5rem;
         display: flex;
         flex-direction: column;
-  
         .tableHeader,
         .tableRow {
-          display: flex;
-          padding: 0.25rem;
-  
-          .rank,
-          .name,
-          .stats,
-          .form {
-            text-align: center;
-          }
-  
-          .rank {
-            width: 8.333%;
-          }
-  
-          .name {
-            width: 25%;
-          }
-  
-          .stats {
-            width: 50%;
             display: flex;
-            justify-content: space-evenly;
-          }
-  
-          .form {
-            width: 16.667%;
-            display: flex;
-            justify-content: center;
-  
-            .formDot {
-              opacity: 0.8;
-              width: 0.75rem;
-              height: 0.75rem;
-              margin: 0.125rem;
-              border-radius: 50%;
+            align-items: center;
+            padding: 0.25rem;  
+            .rank,
+            .name,
+            .stats,
+            .form {
+                text-align: center;
+            } 
+            .rank {
+                width: 8.333%;
+            }
+            
+            .name {
+                width: 25%;
+            }
+            
+            .stats {
+                width: 50%;
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr
+            }
+            
+            .form {
+                width: 16.667%;
+                display: flex;
+                justify-content: center;
+                
+                .formDot {
+                    opacity: 0.8;
+                    width: 0.75rem;
+                    height: 0.75rem;
+                    margin: 0.125rem;
+                    border-radius: 50%;
+                    
   
               &.win {
                 background-color: #28a745;

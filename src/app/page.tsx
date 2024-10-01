@@ -9,10 +9,6 @@ export default async function Home() {
   const standingsData: Standing[] = await getStandings();
   const filteredFixtures: AllFixtures[] = await getFixturesForFiveLeagues();
 
-  if (!standingsData?.length || !filteredFixtures?.length) {
-    return null;
-  }
-
   return (
     <div>
       <Leagues standingsData={standingsData} filteredFixtures={filteredFixtures} />

@@ -1,15 +1,3 @@
-// Match.module.scss
-
-.matchContainer {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    padding: 2.5rem 0; // py-10
-    color: #f8f9fa; // text-neutral-100
-}
-
 .logoSection {
     display: flex;
     width: 100%;
@@ -45,18 +33,18 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 14rem; // h-56
+    height: 14rem; 
 
     .date {
         height: 20%;
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 0.875rem; // text-sm
+        font-size: 0.875rem; 
         text-align: center;
 
         @media (min-width: 768px) {
-            font-size: 1.25rem; // md:text-xl
+            font-size: 1.25rem; 
         }
     }
 
@@ -65,10 +53,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 1.25rem; // text-2xl
+        font-size: 1.25rem; 
 
         @media (min-width: 768px) {
-            font-size: 3rem; // md:text-5xl
+            font-size: 3rem; 
         }
 
         .homeScore, .awayScore {
@@ -79,12 +67,12 @@
             text-align: center;
 
             .penalty, .extratime {
-                font-size: 0.875rem; // text-sm
+                font-size: 0.875rem; 
             }
         }
 
         .scoreSeparator {
-            font-size: 1.25rem; // text-2xl
+            font-size: 1.25rem; 
             text-align: center;
         }
     }
@@ -103,18 +91,18 @@
     width: 100%;
     justify-content: center;
     align-items: center;
-    padding: 1.25rem 0; // py-5
+    padding: 1.25rem 0; 
     @media (min-width: 768px) {
-        padding: 2.5rem 0; // md:p-10
+        padding: 2.5rem 0; 
     }
-    background: linear-gradient(to bottom, rgba(183, 28, 28, 0.6), rgba(183, 28, 28, 0.1)); // bg-gradient-to-b from-red-800/60 to-red-800/10
-
+    background-color: darkred;
+    border-radius: 20px;
     .leagueInfo {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: 0.5rem 0; // py-2
+        padding: 0.5rem 0; 
     }
 
     .teamNames {
@@ -129,14 +117,14 @@
             width: 50%;
             justify-content: center;
             align-items: center;
-            padding: 0.25rem; // p-1
+            padding: 0.25rem; 
 
             .teamName {
-                font-size: 1.25rem; // text-xl
+                font-size: 1.25rem; 
                 text-align: center;
 
                 @media (min-width: 768px) {
-                    font-size: 1.5rem; // md:text-2xl
+                    font-size: 1.5rem; 
                 }
             }
         }

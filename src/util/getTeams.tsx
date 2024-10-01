@@ -16,7 +16,7 @@ export default async function getTeams(): Promise<Team[]> {
                     }
                 } else {
                     throw new Error("Invalid standings data");
-                }
+                }   
             }
         }
 

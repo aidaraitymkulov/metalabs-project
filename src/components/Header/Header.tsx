@@ -2,7 +2,6 @@ import { Team } from '@/types';
 import SearchBar from '../SearchBar';
 import styles from './Header.module.scss';
 import getTeams from '../../util/getTeams';
-import Link from 'next/link';
 
 export default async function Header() {
     let teamsData: Team[] = await getTeams();

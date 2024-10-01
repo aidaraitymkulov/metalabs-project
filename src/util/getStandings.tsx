@@ -1,26 +1,9 @@
 
-import moment from "moment";
-import { Standing } from '@/types';
-import axios from 'axios';
-import { USE_SAMPLE } from "@/src/getSample/useSample";
-import getStandingsSample from "@/src/getSample/getStandingsSample";
+import 'server-only';
+import { Standing } from "@/types";
 
 
 export default async function getStandings(): Promise<Standing[]> {
-
-    if (USE_SAMPLE) {
-        return getStandingsSample();
-    }
-
-    const currentTime = moment();
-    const month = currentTime.month();
-    let year;
-
-    if (month <= 6) {
-        year = currentTime.year() - 1;
-    } else {
-        year = currentTime.year();
-    }
 
     const API_KEY: string = process.env.API_KEY as string;
 
@@ -28,7 +11,7 @@ export default async function getStandings(): Promise<Standing[]> {
         method: 'GET',
         headers: {
             'X-RapidAPI-Key': API_KEY,
-            'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com'
+            'X-RapidAPI-Host': 'v3.football.api-sports.io'
         },
         next: {
             revalidate: 60 * 60 * 24
@@ -46,21 +29,20 @@ export default async function getStandings(): Promise<Standing[]> {
     ]
 
     for (const league of leagues) {
-        const url = `https://api-football-v1.p.rapidapi.com/v3/standings?season=${year}&league=${league.id}`;
-    
+        let url = `https://v3.football.api-sports.io/standings?season=2022&league=${league.id}`
+
         try {
-          const response = await axios.get(url, options);
-          const data = response.data;
-          const standing = data.response[0];
-    
-          if (standing) {
-            standings.push(standing);
-            console.log(standings)
-          }
+            const response = await fetch(url, options);
+            const data = await response.json();
+            const standing = data.response[0];
+        
+            if (standing) {
+              standings.push(standing);
+            }
         } catch (err) {
-          console.error(`Error fetching ${league.name} standings: ${err}`);
+            console.error(`Error fetching ${league.name} standings: ${err}`);
         }
-      }
+    }
 
     return standings;
 }

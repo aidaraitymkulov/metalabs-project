@@ -118,19 +118,20 @@ type AllFixtures = {
     fixtures: Fixture[]
 }
 
-type Statistic = {
-    team: {
-        id: number;
-        name: string;
-        logo: string;
-    };
-    statistics: Array<{
-        type: string;
-        value: number | string | null;
-    }>;
-};
+type Player = {
+    id: number;
+    name: string;
+    firstname: string;
+    lastname: string;
+    age: number;
+    nationality: string;
+    height: string;
+    weight?: string | null;
+    injured: boolean;
+    photo: string;
+}
 
 
 
 
-export { Standing, Team, AllFixtures, Fixture, Statistic }
+export { Standing, Team, AllFixtures, Fixture, Player }

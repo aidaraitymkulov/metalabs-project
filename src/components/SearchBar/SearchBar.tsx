@@ -1,17 +1,17 @@
 "use client"
 import { Team } from '@/types';
 import styles from './SearchBar.module.scss';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 
 export default function SearchBar({teamsData}:{teamsData: Team[]}) {
 
     const [searchTeam, setSearchTeam] = useState('')
-    // const [focusedIndex, setFocusedIndex] = useState(-1)
+    const [focusedIndex, setFocusedIndex] = useState(-1)
     const [showFilteredBox, setShowFilteredBox] = useState(false)
 
-    // let router = useRouter();
+    let router = useRouter();
 
     const filteredTeams = teamsData.filter(team =>
         team.team.name.toLowerCase().includes(searchTeam.toLowerCase())
@@ -19,30 +19,31 @@ export default function SearchBar({teamsData}:{teamsData: Team[]}) {
 
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTeam(event.target.value);
+        setFocusedIndex(-1)
         setShowFilteredBox(true);
     }
 
-    // const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    //     if (event.key === 'ArrowDown') {
-    //         let length = 0;
-    //         if (filteredTeams.length > 10) {
-    //             length = 10;
-    //         } else {
-    //             length = filteredTeams.length;
-    //         }
-    //         console.log(focusedIndex)
-    //         setFocusedIndex(prevIndex => (prevIndex < length - 1 ? prevIndex + 1 : prevIndex));
-    //     } else if (event.key === 'ArrowUp') {
-    //         event.preventDefault();
-    //         setFocusedIndex(prevIndex => (prevIndex > 0 ? prevIndex - 1 : prevIndex));
-    //     } else if (event.key === 'Enter') {
-    //         if (focusedIndex !== -1) {
-    //             const teamId = filteredTeams[focusedIndex].team.id;
-    //             router.push(`/team/${teamId}`);
-    //             setSearchTeam('');
-    //         }
-    //     }
-    // }
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'ArrowDown') {
+            let length = 0;
+            if (filteredTeams.length > 10) {
+                length = 10;
+            } else {
+                length = filteredTeams.length;
+            }
+            console.log(focusedIndex)
+            setFocusedIndex(prevIndex => (prevIndex < length - 1 ? prevIndex + 1 : prevIndex));
+        } else if (event.key === 'ArrowUp') {
+            event.preventDefault();
+            setFocusedIndex(prevIndex => (prevIndex > 0 ? prevIndex - 1 : prevIndex));
+        } else if (event.key === 'Enter') {
+            if (focusedIndex !== -1) {
+                const teamId = filteredTeams[focusedIndex].team.id;
+                router.push(`/team/${teamId}`);
+                setSearchTeam('');
+            }
+        }
+    }
 
     const handleTeamItemClick = () => {
         setSearchTeam('');
@@ -66,8 +67,8 @@ export default function SearchBar({teamsData}:{teamsData: Team[]}) {
         <div className={styles.searchBar}>
             <input type="text" placeholder='Search for a team...' className={styles.searchBar__input}
             value={searchTeam}
-            onChange={handleSearchChange}
-            // onKeyDown={handleKeyDown}
+            onChange={handleSearchChange}   
+            onKeyDown={handleKeyDown}
         />
         {
                 searchTeam && filteredTeams.length > 0 && showFilteredBox ? (
@@ -80,7 +81,8 @@ export default function SearchBar({teamsData}:{teamsData: Team[]}) {
                                 href={`/team/${standing.team.id}`}
                                 key={standing.team.id}
                                 onClick={() => handleTeamItemClick()}
-                            >
+                                className={`${styles.link} ${i === focusedIndex ? styles.focused : ''}`}
+                                >
                                 {standing.team.name}
                             </Link>
                         ))}

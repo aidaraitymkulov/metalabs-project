@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <div className={styles.background}>
-          <img src="./background.png" alt="backgroundImage" className={styles.background__image} />
+          <div className={styles.background__image} />
         </div>
         <div className={styles.all}>
         <Header />
